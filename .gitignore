@@ -1,0 +1,94 @@
+# Ignore Visual Studio temporary files, build results, and
+# user-specific files
+.vscode/
+.vs/
+.vscode/*
+!.vscode/settings.json  # Keep specific VS Code settings
+!.vscode/tasks.json     # Keep specific task configurations
+!.vscode/launch.json    # Keep launch configurations
+
+# Ignore Visual Studio files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Ignore build results and other binary files
+bin/
+obj/
+out/
+Debug/
+Release/
+
+# ASP.NET Core specific
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+
+# Resharper and Rider files
+.idea/
+*.DotSettings.user
+
+# ASP.NET Core secrets
+**/secrets.json
+
+# Node modules for Angular
+node_modules/
+
+# Angular specific files
+dist/
+e2e/
+*.log
+
+# Angular cache files
+.angular/cache/
+.angular/*
+
+# Dependency directories
+node_modules/
+bower_components/
+
+# Environment files (these often contain sensitive information)
+src/environments/environment.*.ts
+
+# npm cache files
+.npm/
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# OS generated files
+.DS_Store
+Thumbs.db
+desktop.ini
+$RECYCLE.BIN/
+
+# Exclude VS Code workspace and settings if not shared
+*.code-workspace
+.vscode/
+
+# Ignore EF Core migration snapshots (if you're using migrations)
+Migrations/*Snapshot.cs
+
+# Azure specific
+.scm/
+*.publishsettings
+*.Publish.xml
+
+# Bundle and minified files
+*.min.js
+*.min.css
+*.map
+
+# npm debug files
+npm-debug.log*
