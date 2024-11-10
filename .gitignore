@@ -46,6 +46,8 @@ e2e/
 # Angular cache files
 .angular/cache/*
 .angular/*
+/Client/AngularLoginPage/.angular/cache/*
+/Client/AngularLoginPage/.angular/*
 
 # Dependency directories
 node_modules/
