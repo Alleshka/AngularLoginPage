@@ -1,0 +1,81 @@
+<div class="registration-wizard">
+    <h2>Step {{currentStep}}</h2>
+
+    <form [formGroup]="step1Form" (ngSubmit)="nextStep()">
+        <div *ngIf="currentStep === 1">
+            <div>
+                <label for="login">Login: </label>
+                <input type="email" id="login" formControlName="login" placeholder="Enter your email">
+                <div *ngIf="step1Form.get('login')?.touched && step1Form.get('login')?.invalid">
+                    <small *ngIf="step1Form.get('login')?.hasError('required')">Enter is required</small>
+                    <small *ngIf="step1Form.get('login')?.hasError('email')">Enter valid Email</small>
+                </div>
+            </div>
+
+            <div>
+                <label for="password">Password: </label>
+                <input type="password" id="password" formControlName="password" placeholder="Enter your password">
+                <div *ngIf="step1Form.get('password')?.touched && step1Form.get('password')?.invalid">
+                    <small *ngIf="step1Form.get('password')?.hasError('required')">Password is required</small>
+                    <small *ngIf="step1Form.get('password')?.hasError('pattern')">Password must contain at least one
+                        letter and one digit.</small>
+                </div>
+            </div>
+
+            <div>
+                <label for="confirmPassword">Password: </label>
+                <input type="password" id="confirmPassword" formControlName="confirmPassword"
+                    placeholder="Confirm your password">
+                <div *ngIf="step1Form.get('confirmPassword')?.touched && step1Form.get('confirmPassword')?.invalid">
+                    <small *ngIf="step1Form.get('confirmPassword')?.hasError('required')">Confirm your password</small>
+                    <small *ngIf="step1Form.get('confirmPassword')?.hasError('passwordMismatch')">Passwords do not
+                        match.</small>
+                </div>
+            </div>
+
+            <div>
+                <label>
+                    <input type="checkbox" formControlName="agree" />
+                    I agree to the terms and conditions
+                </label>
+                <div *ngIf="step1Form.get('agree')?.touched && step1Form.get('agree')?.invalid" class="error">
+                    You must agree to proceed.
+                </div>
+            </div>
+
+            <button type="submit" [disabled]="registrationForm.get('step1')?.invalid">Go to step {{currentStep + 1}}</button>
+        </div>
+    </form>
+
+    <div *ngIf="currentStep === 2">
+        <h2>Step 2: Location Information</h2>
+        <form [formGroup]="step2Form" (ngSubmit)="save()">
+            <div>
+                <label for="country">Country:</label>
+                <select id="country" formControlName="country" (change)="onCountryChange($event.target)">
+                    <option value="">Select Country</option>
+                    <option *ngFor="let country of countries" [value]="country.id">{{ country.name }}</option>
+                </select>
+                <div *ngIf="step2Form.get('country')?.touched && step2Form.get('country')?.invalid" class="error">
+                    Country is required.
+                </div>
+            </div>
+
+            <div>
+                <label for="province">Province:</label>
+                <select id="province" formControlName="province">
+                    <option value="">Select Province</option>
+                    <option *ngFor="let province of provinces" [value]="province.id">{{ province.name }}</option>
+                </select>
+                <div *ngIf="step2Form.get('province')?.touched && step2Form.get('province')?.invalid" class="error">
+                    Province is required.
+                </div>
+            </div>
+
+            <div style="display: flex;">
+                <button (click)="prevStep()">Back</button>
+                <button type="submit" [disabled]="registrationForm.get('step2')?.invalid">Save</button>
+            </div>
+            <div *ngIf="!!error">{{error}}</div>
+        </form>
+    </div>
