@@ -4,7 +4,6 @@ using AngularLoginPage.WebApi.Controllers;
 using AngularLoginPage.WebApi.DTO;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 
 namespace AngularLoginPage.WebApi.Tests
 {

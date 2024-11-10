@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -15,5 +15,10 @@
     <ProjectReference Include="..\AngularLoginPage.Context\AngularLoginPage.Context.csproj" />
     <ProjectReference Include="..\AngularLoginPage.Domain\AngularLoginPage.Domain.csproj" />
   </ItemGroup>
+  
+  <Target Name="BuildFront" AfterTargets="Build">
+    <Message Importance="high" Text="Build angular app"/>
+    <Exec Command="npm i &amp;&amp; npm run build" WorkingDirectory="$(SolutionDir)..\..\Client\AngularLoginPage" />
+  </Target>
 
 </Project>

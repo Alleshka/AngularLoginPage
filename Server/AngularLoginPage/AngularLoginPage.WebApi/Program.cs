@@ -31,15 +31,22 @@ namespace AngularLoginPage.WebApi
             var app = builder.Build();
             app.UseCors("AllowFrontend");
 
-            // Configure the HTTP request pipeline.
+            app.UseRouting();
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
 
             app.UseHttpsRedirection();
 
-            app.UseAuthorization();
-
-
             app.MapControllers();
 
+            app.UseAuthorization();
+
+            app.UseEndpoints(config =>
+            {
+                config.MapControllers();
+                config.MapFallbackToController("Index", "Fallback");
+            });
+            
             app.Run();
         }
     }
