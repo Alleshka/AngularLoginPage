@@ -56,7 +56,7 @@ namespace AngularLoginPage.WebApi.Controllers
 
             _context.Users.Add(newUser);
             await _context.SaveChangesAsync();
-            return Ok(newUser);
+            return Ok(newUser.Id);
         }
     }
 }

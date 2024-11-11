@@ -8,7 +8,7 @@ namespace AngularLoginPage.WebApi.DTO
         public string Login { get; set; }
 
         [Required]
-        [RegularExpression(@"^(?=.*[A-Za-z])(?=.*\d).{2,}$", ErrorMessage = "Password must contain at least one letter, one digit, and be at least 2 characters long")]
+        [RegularExpression(@"^(?=.*[\p{L}])(?=.*\d).{2,}$", ErrorMessage = "Password must contain at least one letter, one digit, and be at least 2 characters long")]
         public string Password { get; set; }
 
         [Compare("Password")]

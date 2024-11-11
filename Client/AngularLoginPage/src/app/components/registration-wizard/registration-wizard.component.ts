@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators, AbstractControlOptions } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RegistrationService } from 'src/app/services/registration.service';
 import { CountryService } from 'src/app/services/country.service';
 import { UserRegister } from 'src/app/shared/domain/user';
@@ -29,10 +29,10 @@ export class RegistrationWizardComponent implements OnInit {
     this.registrationForm = this.fb.group({
       step1: this.fb.group({
         login: ['', [Validators.required, Validators.email]],
-        password: ['', [Validators.required, Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d).+$/)]],
+        password: ['', [Validators.required, Validators.pattern(/^(?=.*[\p{L}])(?=.*\d).{2,}$/u)]],
         confirmPassword: ['', Validators.required],
         agree: [false, Validators.requiredTrue]
-      }, { validator: this.matchPasswords } as AbstractControlOptions),
+      }, { validators: this.matchPasswords }),
       step2: this.fb.group({
         country: ['', Validators.required],
         province: ['', Validators.required]
@@ -57,6 +57,7 @@ export class RegistrationWizardComponent implements OnInit {
   private matchPasswords(group: FormGroup) {
     const password = group.get('password')?.value;
     const confirmPassword = group.get('confirmPassword')?.value;
+
     return password === confirmPassword ? null : { passwordsMismatch: true };
   }
 
